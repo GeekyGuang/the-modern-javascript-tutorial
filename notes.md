@@ -24,7 +24,7 @@
 
 在 JavaScript 语言中没有一个特别的 “function” 类型。函数隶属于 object 类型。但是 typeof 会对函数区分对待，并返回 "function"。这也是来自于 JavaScript 语言早期的问题。从技术上讲，这种行为是不正确的，但在实际编程中却非常方便。
 
-### 浏览器交互
+### 2.6 浏览器交互
 
 alert 显示信息。
 
@@ -42,7 +42,7 @@ if (userConfirm) {
 }
 ```
 
-### 类型转换
+### 2.7 类型转换
 
 Number(undefined) === NaN
 
