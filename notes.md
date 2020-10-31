@@ -23,3 +23,33 @@
 - symbol 类型用于创建对象的唯一标识符
 
 在 JavaScript 语言中没有一个特别的 “function” 类型。函数隶属于 object 类型。但是 typeof 会对函数区分对待，并返回 "function"。这也是来自于 JavaScript 语言早期的问题。从技术上讲，这种行为是不正确的，但在实际编程中却非常方便。
+
+### 浏览器交互
+
+alert 显示信息。
+
+prompt 显示信息要求用户输入文本。点击确定返回文本，点击取消或按下 Esc 键返回 null。
+
+confirm 显示信息等待用户点击确定或取消。点击确定返回 true，点击取消或按下 Esc 键返回 false。
+
+```javascript
+"use strict";
+
+let name = prompt("your name?", "name");
+let userConfirm = confirm(`Is ${name} your name?`);
+if (userConfirm) {
+  alert(`hello ${name}`);
+}
+```
+
+### 类型转换
+
+Number(undefined) === NaN
+
+Number(null) === 0
+
+5 个 falsy 值：false, 0, '', null, undefined
+
+-可以将字符串转换为数值: -'123' === -123
+
++可以将数值转换为字符串: '1' + 23 === '123'
