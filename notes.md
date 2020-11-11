@@ -48,7 +48,7 @@ Number(undefined) === NaN
 
 Number(null) === 0
 
-5 个 falsy 值：false, 0, '', null, undefined
+5 个 falsy 值：NaN, 0, '', null, undefined
 
 -可以将字符串转换为数值: -'123' === -123
 
@@ -125,3 +125,5 @@ undefined + 1 = NaN; // (6)
 
 - 当对不同类型的值进行比较时，它们会先被转化为数字（不包括严格相等检查）再进行比较。
 - 在非严格相等 == 下，null 和 undefined 相等且各自不等于任何其他的值。
+
+### 2.10
