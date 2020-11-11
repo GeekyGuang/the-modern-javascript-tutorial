@@ -1,0 +1,12 @@
+<script>
+    let n = +prompt("请输入N")
+    notPrime:
+    for (let i = n; i > 1; i--){
+        for(let j = i - 1; j > 1; j--){
+            if (i % j === 0){
+                continue notPrime
+            }
+        }
+        console.log(i)
+    }
+</script>
