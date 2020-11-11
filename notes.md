@@ -140,3 +140,12 @@ undefined + 1 = NaN; // (6)
 alert(!!"non-empty string"); // true
 alert(!!null); // false
 ```
+
+### 2.12 空值合并运算符 ??
+
+null/undefined 为未定义，??返回第一个已定义的值
+
+```javascript
+// 当 height 的值为 null 或 undefined 时，将 height 的值设置为 100
+height = height ?? 100;
+```
