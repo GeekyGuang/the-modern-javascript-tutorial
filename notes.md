@@ -149,3 +149,30 @@ null/undefined 为未定义，??返回第一个已定义的值
 // 当 height 的值为 null 或 undefined 时，将 height 的值设置为 100
 height = height ?? 100;
 ```
+
+### 2.16 函数表达式
+
+#### 回调函数
+
+将函数作为参数传递，当符合某个条件时就调用这个函数
+
+```javascript
+function ask(question, yes, no) {
+  if (confirm(question)) yes();
+  else no();
+}
+
+ask(
+  "Do you agree?",
+  function () {
+    alert("You agreed.");
+  }, // 匿名函数作为回调函数
+  function () {
+    alert("You canceled the execution.");
+  }
+);
+```
+
+函数可以被视为一个 行为（action）。
+
+我们可以在变量之间传递它们，并在需要时运行。
