@@ -225,3 +225,5 @@ for (let key in obj) {
   return false;
 }
 ```
+
+使用 Object.assign()进行对象的拷贝
