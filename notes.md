@@ -226,7 +226,7 @@ for (let key in obj) {
 }
 ```
 
-使用 Object.assign()进行对象的拷贝
+使用 Object.assign()进行对象的拷贝，可以拷贝所有属性
 
 ### 4.3 垃圾回收
 
@@ -258,3 +258,32 @@ this 只有在函数(方法)被调用时才会有值，且其值为函数(方法
 - obj?.prop —— 如果 obj 存在则返回 obj.prop，否则返回 undefined。
 - obj?.[prop] —— 如果 obj 存在则返回 obj[prop]，否则返回 undefined。
 - obj.method?.() —— 如果 obj.method 存在则调用 obj.method()，否则返回 undefined。
+
+### 4.7 symbol
+
+```javascript
+let id = Symbol("id"); // 创建symbol，不用new, 括号里是description
+let user = {
+  name: "John",
+  age: 30,
+  [id]: 123, // 要用[],否则变成字符串
+};
+
+for (let key in user) alert(key); // name, age (no symbols)
+
+// 使用 Symbol 任务直接访问
+alert("Direct: " + user[id]);
+```
+
+用 Symbol.for(key) 创建全局 symbol，同名相同
+
+```javascript
+// 从全局注册表中读取
+let id = Symbol.for("id"); // 如果该 Symbol 不存在，则创建它
+
+// 再次读取（可能是在代码中的另一个位置）
+let idAgain = Symbol.for("id");
+
+// 相同的 Symbol
+alert(id === idAgain); // true
+```
