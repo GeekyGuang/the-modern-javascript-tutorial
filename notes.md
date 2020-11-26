@@ -250,3 +250,11 @@ this 只有在函数(方法)被调用时才会有值，且其值为函数(方法
 
 如果 return 返回的是一个对象，则返回这个对象，而不是 this。
 如果 return 返回的是一个原始类型，则忽略。
+
+### 4.6 可选链
+
+可选链 ?. 语法有三种形式：
+
+- obj?.prop —— 如果 obj 存在则返回 obj.prop，否则返回 undefined。
+- obj?.[prop] —— 如果 obj 存在则返回 obj[prop]，否则返回 undefined。
+- obj.method?.() —— 如果 obj.method 存在则调用 obj.method()，否则返回 undefined。
