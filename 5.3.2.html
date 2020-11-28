@@ -1,0 +1,10 @@
+<script>
+    function truncate(str, maxlength){
+        if(!str) return str
+
+        return str.length > maxlength ? str.slice(0, maxlength - 1) + '…' : str
+    }
+
+    alert(truncate("What I'd like to tell on this topic is:", 20))
+    alert(truncate("Hi everyone!", 20))
+</script>
