@@ -1,0 +1,23 @@
+<script>
+    function sumInput(){
+        let arr = []
+        while(true){
+            let val = prompt("?")
+
+            if(val === null || val === '' || !isFinite(val)) break
+
+            arr.push(val)
+        }
+
+        let sum = 0
+
+        for(let i of arr){
+            sum += +i
+        }
+
+        return sum
+    }
+
+    let sum = sumInput()
+    alert(sum)
+</script>

@@ -287,3 +287,10 @@ let idAgain = Symbol.for("id");
 // 相同的 Symbol
 alert(id === idAgain); // true
 ```
+
+### 5.4 数组
+
+数组的 length 是最大索引+1
+清空数组最简单的方法就是：arr.length = 0
+
+push 和 unshift 都接受多个参数: arr.push(1, 2, 3, 4)
