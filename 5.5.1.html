@@ -1,8 +1,6 @@
 <script>
     function camelize(str) {
-        let arr =  str.split('-')
-        arr = arr.map(item => item[0].toUpperCase() + item.slice(1).toLowerCase())
-        return arr.join('')
+        return str.split('-').map((item,index) => index===0 ? item : item[0].toUpperCase() + item.slice(1).toLowerCase()).join('')
     }
 
     alert(camelize("background-color"))
