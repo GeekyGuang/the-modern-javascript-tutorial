@@ -294,3 +294,7 @@ alert(id === idAgain); // true
 清空数组最简单的方法就是：arr.length = 0
 
 push 和 unshift 都接受多个参数: arr.push(1, 2, 3, 4)
+
+### 5.5 数组方法
+
+forEach 和 map 都不会改变数组本身

@@ -1,0 +1,11 @@
+<script>
+    function camelize(str) {
+        let arr =  str.split('-')
+        arr = arr.map(item => item[0].toUpperCase() + item.slice(1).toLowerCase())
+        return arr.join('')
+    }
+
+    alert(camelize("background-color"))
+    alert(camelize("list-style-image"))
+    alert(camelize("-webkit-transition"))
+</script>
