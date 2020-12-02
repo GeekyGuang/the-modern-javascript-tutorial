@@ -298,3 +298,9 @@ push 和 unshift 都接受多个参数: arr.push(1, 2, 3, 4)
 ### 5.5 数组方法
 
 forEach 和 map 都不会改变数组本身
+
+### 5.6 可迭代对象
+
+可以应用 for..of 的对象被称为 可迭代的。
+
+Array.from(obj[, mapFn, thisArg]) 将可迭代对象或类数组对象 obj 转化为真正的数组 Array，然后我们就可以对它应用数组的方法。可选参数 mapFn 和 thisArg 允许我们将函数应用到每个元素。
