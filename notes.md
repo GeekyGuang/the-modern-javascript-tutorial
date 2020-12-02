@@ -304,3 +304,12 @@ forEach 和 map 都不会改变数组本身
 可以应用 for..of 的对象被称为 可迭代的。
 
 Array.from(obj[, mapFn, thisArg]) 将可迭代对象或类数组对象 obj 转化为真正的数组 Array，然后我们就可以对它应用数组的方法。可选参数 mapFn 和 thisArg 允许我们将函数应用到每个元素。
+
+数组去重
+
+```javascript
+function unique(arr) {
+  // return [...new Set(arr)]
+  return Array.from(new Set(arr));
+}
+```
