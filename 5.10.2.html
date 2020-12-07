@@ -1,0 +1,14 @@
+<script>
+    function getDateAgo(date, days) {
+        // return new Date(date.getTime() - days * 24 * 3600000)
+        let dateCopy = new Date(date)  // 赋值日期
+        dateCopy.setDate(dateCopy.getDate() - days)
+
+        return dateCopy.getDate()
+    }
+
+    let date = new Date(2015, 0, 2)
+    alert(getDateAgo(date, 1))
+    alert(getDateAgo(date, 2))
+    alert(getDateAgo(date, 365))
+</script>

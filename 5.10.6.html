@@ -1,0 +1,30 @@
+<script>
+    function formatDate(date) {
+        let now = new Date()
+        let diff = Math.abs(now - date)
+        if (diff < 1000) {
+            alert("right now")
+        } else if (diff < 1000 * 60) {
+            alert(`${diff / 1000} sec. ago`)
+        } else if (diff < 1000 * 60 * 60) {
+            alert(`${diff / (1000 * 60)} min. ago`)
+        } else {
+            let yy = date.getFullYear()
+            yy = yy.toString().slice(-2)
+            let mm = date.getMonth() + 1
+            mm = mm.toString().padStart(2, '0')
+            let dd = date.getDate()
+            dd = dd.toString().padStart(2, '0')
+            let hh = date.getHours()
+            hh = hh.toString().padStart(2, '0')
+            let min = date.getMinutes()
+            min = min.toString().padStart(2, '0')
+            alert(dd + '.' + mm + '.' + yy + ' ' + hh + ':' + min)
+        }
+    }
+
+    formatDate(new Date(new Date() - 1))
+    formatDate(new Date(new Date - 30 * 1000))
+    formatDate(new Date(new Date - 5 * 60 * 1000))
+    formatDate(new Date(new Date - 86400 * 1000))
+</script>
