@@ -312,6 +312,28 @@ function unique(arr) {
   // return [...new Set(arr)]
   return Array.from(new Set(arr));
 }
+```
 
+### 5.9 解构赋值
 
+```javascript
+let user = "mark tuwen";
+let [firstName, secondName] = user.split(" ");
+
+// 循环
+for (let [key, value] of Object.entries(user)) {
+  alert(`${key}:${value}`); // name:John, then age:30
+}
+
+// 交换两个变量的值
+let guest = "Jane";
+let admin = "Pete";
+
+[guest, admin] = [admin, guest];
+
+// 对象解构,属性名要对应
+let {prop : varName = default, ...rest} = object
+
+// 数组解构，位置要对应
+let [item1 = default, item2, ...rest] = array
 ```
