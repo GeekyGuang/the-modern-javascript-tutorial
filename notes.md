@@ -383,7 +383,7 @@ IIFE 立即执行函数创建私有变量(现在已不使用)
 })();
 ```
 
-### 6.5 函数 NFE
+### 6.6 函数 NFE
 
 命名函数表达式（NFE，Named Function Expression）
 
