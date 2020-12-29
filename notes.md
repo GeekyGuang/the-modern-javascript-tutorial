@@ -382,3 +382,24 @@ IIFE 立即执行函数创建私有变量(现在已不使用)
   alert("Unary plus starts the expression");
 })();
 ```
+
+### 6.5 函数 NFE
+
+命名函数表达式（NFE，Named Function Expression）
+
+方便函数自己调用自己，且该名称不能在外部访问
+
+```javascript
+let sayHi = function func(who) {
+  if (who) {
+    alert(`Hello, ${who}`);
+  } else {
+    func("Guest"); // 使用 func 再次调用函数自身
+  }
+};
+
+sayHi(); // Hello, Guest
+
+// 但这不工作：
+func(); // Error, func is not defined（在函数外不可见）
+```
