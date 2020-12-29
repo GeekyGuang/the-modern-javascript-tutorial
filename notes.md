@@ -347,3 +347,38 @@ let [item1 = default, item2, ...rest] = array
 **闭包** 是指内部函数总是可以访问其所在的外部函数中声明的变量和参数，即使在其外部函数被返回（寿命终结）了之后。
 
 函数将从内到外依次在对应的词法环境中寻找目标变量，它使用最新的值。
+
+### 6.4 var
+
+var 只有函数作用域和全局作用域，没有块级作用域
+
+var 允许重复声明
+
+var 变量声明会提升，但赋值不会
+
+IIFE 立即执行函数创建私有变量(现在已不使用)
+
+```javascript
+(function () {
+  var message = "Hello";
+
+  alert(message); // Hello
+})();
+
+// 其他方式创建
+(function () {
+  alert("Parentheses around the function");
+})();
+
+(function () {
+  alert("Parentheses around the whole thing");
+})();
+
+!(function () {
+  alert("Bitwise NOT operator starts the expression");
+})();
+
++(function () {
+  alert("Unary plus starts the expression");
+})();
+```
