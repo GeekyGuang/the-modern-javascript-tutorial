@@ -403,3 +403,7 @@ sayHi(); // Hello, Guest
 // 但这不工作：
 func(); // Error, func is not defined（在函数外不可见）
 ```
+
+### 6.7 new Function([arg1,arg2], functionbody)
+
+使用 new Function 创建的函数，它的 [[Environment]] 指向全局词法环境，而不是函数所在的外部词法环境。因此，我们不能在 new Function 中直接使用外部变量。
