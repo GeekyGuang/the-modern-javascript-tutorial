@@ -1,0 +1,21 @@
+<script>
+    function printNumber(from,to){
+        let i = from
+        let intervalId = setInterval(()=>{
+            console.log(i)
+            i++
+            if(i>to) clearInterval(intervalId)
+        },1000)
+    }
+
+    function printNumber(from,to){
+        let i = from
+        let timeoutId = setTimeout(function func(){
+            console.log(i)
+            i++
+            if(i<=to) timeoutId = setTimeout(func, 1000)
+        },1000)
+    }
+
+    printNumber(1,5)
+</script>
