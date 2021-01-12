@@ -408,3 +408,7 @@ func(); // Error, func is not defined（在函数外不可见）
 
 使用 new Function 创建的函数，它的 [[Environment]] 指向全局词法环境，而不是函数所在的外部词法环境。
 因此，我们不能在 new Function 中直接使用外部变量。
+
+### 6.8 调度函数
+
+任何 setTimeout 都只会在当前代码执行完毕之后才会执行。
