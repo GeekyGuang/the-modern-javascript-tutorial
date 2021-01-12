@@ -1,3 +1,28 @@
-<script>
-  sss
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{number}}
+     <!-- <my-component :value='number' @input="number=$event"></my-component> -->
+     <my-component :value='number' v-model="number"></my-component>
+  </div>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+  <script>
+    Vue.component('my-component',{
+      props:['value'],
+      template: `<div><button @click="$emit('input', ++value)">+1</button></div>`
+    })
+    let app = new Vue({
+      el: "#app",
+      data:{
+        number: 0
+      }
+    })
+  </script>
+</body>
+</html>
