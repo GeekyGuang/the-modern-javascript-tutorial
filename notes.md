@@ -441,3 +441,28 @@ let bound = sayHi.bind({
 
 alert(bound.test); // undefined
 ```
+
+### 7.2 getter setter
+
+访问器属性（accessor properties）。它们本质上是用于获取和设置值的函数，但从外部代码来看就像常规属性。
+
+```javascript
+let user = {
+  get name() {
+    return this._name;
+  },
+
+  set name(value) {
+    if (value.length < 4) {
+      alert("Name is too short, need at least 4 characters");
+      return;
+    }
+    this._name = value;
+  },
+};
+
+user.name = "Pete";
+alert(user.name); // Pete
+```
+
+有一个众所周知的约定，即以下划线 "\_" 开头的属性是内部属性，不应该从对象外部进行访问。
