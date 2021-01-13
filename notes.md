@@ -412,3 +412,32 @@ func(); // Error, func is not defined（在函数外不可见）
 ### 6.8 调度函数
 
 任何 setTimeout 都只会在当前代码执行完毕之后才会执行。
+
+### 6.10 函数绑定
+
+一个函数不能被重绑定（re-bound）
+
+```javascript
+function f() {
+  alert(this.name);
+}
+
+f = f.bind({ name: "John" }).bind({ name: "Pete" });
+
+f(); // John
+```
+
+bind 的结果是另一个对象。
+
+```javascript
+function sayHi() {
+  alert(this.name);
+}
+sayHi.test = 5;
+
+let bound = sayHi.bind({
+  name: "John",
+});
+
+alert(bound.test); // undefined
+```
