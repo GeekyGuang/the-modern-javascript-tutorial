@@ -466,3 +466,56 @@ alert(user.name); // Pete
 ```
 
 有一个众所周知的约定，即以下划线 "\_" 开头的属性是内部属性，不应该从对象外部进行访问。
+
+### 8.1 原型继承
+
+for..in 循环也会迭代继承的属性。
+
+```javascript
+let animal = {
+  eats: true,
+};
+
+let rabbit = {
+  jumps: true,
+  __proto__: animal,
+};
+
+// Object.keys 只返回自己的 key
+alert(Object.keys(rabbit)); // jumps
+
+// for..in 会遍历自己以及继承的键
+for (let prop in rabbit) alert(prop); // jumps，然后是 eats
+```
+
+几乎所有其他键/值获取方法，例如 Object.keys 和 Object.values 等，都会忽略继承的属性。
+它们只会对对象自身进行操作。不考虑 继承自原型的属性。
+
+在现代引擎中，从性能的角度来看，我们是从对象还是从原型链获取属性都是没区别的。它们（引擎）会记住在哪里找到的该属性，并在下一次请求中重用它。
+
+```javascript
+// this.stomach= 不会执行对 stomach 的查找。该值会被直接写入 this 对象。
+// this.stomach.push(food); 会
+let hamster = {
+  stomach: [],
+
+  eat(food) {
+    this.stomach.push(food);
+  },
+};
+
+let speedy = {
+  __proto__: hamster,
+};
+
+let lazy = {
+  __proto__: hamster,
+};
+
+// 这只仓鼠找到了食物
+speedy.eat("apple");
+alert(speedy.stomach); // apple
+
+// 这只仓鼠也找到了食物，为什么？请修复它。
+alert(lazy.stomach); // apple
+```
