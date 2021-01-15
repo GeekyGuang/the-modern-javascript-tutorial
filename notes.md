@@ -519,3 +519,35 @@ alert(speedy.stomach); // apple
 // 这只仓鼠也找到了食物，为什么？请修复它。
 alert(lazy.stomach); // apple
 ```
+
+## 13 模块
+
+### 13.1 简介
+
+一个模块（module）就是一个文件。一个脚本就是一个模块。
+
+- export 关键字标记了可以从当前模块外部访问的变量和函数。
+- import 关键字允许从其他模块导入功能。
+
+必须通过使用 <script type="module"> 特性（attribute）来告诉浏览器，此脚本应该被当作模块（module）来对待。
+
+```javascript
+export function sayHi(user) {
+  alert(`Hello, ${user}`);
+}
+```
+
+```html
+<script type="module">
+  import { sayHi } from "./sayHi.js";
+  alert(sayHi);
+  sayHi("jack");
+</script>
+```
+
+模块始终默认使用 use strict
+
+模块只被执行一次。生成导出，然后它被分享给所有对其的导入，所以如果某个地方修改了 admin 对象，其他的模块也能看到这个修改。
+在一个模块中，顶级 this 是 undefined
+
+### 13.2 导入、导出
