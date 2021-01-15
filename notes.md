@@ -551,3 +551,13 @@ export function sayHi(user) {
 在一个模块中，顶级 this 是 undefined
 
 ### 13.2 导入、导出
+
+命名导出要花括号，默认导出不要
+export class User {...}
+import {User} from ...
+
+export default class User {...}
+import User from ...
+
+重新导出
+export {login, logout} from './helpers.js';
