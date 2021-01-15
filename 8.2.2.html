@@ -1,0 +1,10 @@
+<script>
+    function User(name){
+        this.name = name
+    }
+    let user = new User('jack')
+
+    let user2 = new user.constructor('rose')
+    console.dir(user2)
+    alert(user2.name)
+</script>

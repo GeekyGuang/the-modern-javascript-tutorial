@@ -520,6 +520,43 @@ alert(speedy.stomach); // apple
 alert(lazy.stomach); // apple
 ```
 
+### 8.2 F.prototype
+
+F.prototype 属性仅在 new F 被调用时使用，它为新对象的 [[Prototype]] 赋值。
+
+```javascript
+let animal = {
+  eats: true,
+};
+
+function Rabbit(name) {
+  this.name = name;
+}
+
+Rabbit.prototype = animal;
+
+let rabbit = new Rabbit("White Rabbit"); //  rabbit.__proto__ == animal
+
+alert(rabbit.eats); // true
+```
+
+每个函数都有 "prototype" 属性，即使我们没有提供它。
+
+默认的 "prototype" 是一个只有属性 constructor 的对象，属性 constructor 指向函数自身。
+
+```javascript
+function Rabbit(name) {
+  this.name = name;
+  alert(name);
+}
+
+let rabbit = new Rabbit("White Rabbit");
+
+let rabbit2 = new rabbit.constructor("Black Rabbit");
+```
+
+注意，当 prototype 被修改，constructor 可能就不存在了
+
 ## 13 模块
 
 ### 13.1 简介
