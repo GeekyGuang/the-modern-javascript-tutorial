@@ -13,10 +13,12 @@
   </div>
   <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
   <script>
+
     Vue.component('my-component',{
       props:['value'],
       template: `<div><button @click="$emit('input', ++value)">+1</button></div>`
     })
+    
     let app = new Vue({
       el: "#app",
       data:{
