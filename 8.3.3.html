@@ -1,7 +1,7 @@
 <script>
     Function.prototype.defer = function(ms){
         let f = this   // 使用this获取创建的函数
-        debugger
+        // debugger
         return function(...args) {
             // 在 f.apply 中使用 this 以使装饰器适用于对象方法。
             setTimeout(()=>f.apply(this, args), ms)
