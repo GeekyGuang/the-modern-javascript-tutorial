@@ -580,6 +580,35 @@ alert(Object.getPrototypeOf(rabbit) === animal); // true
 Object.setPrototypeOf(rabbit, {}); // 将 rabbit 的原型修改为 {}
 ```
 
+### 9.1 class
+
+基本的类语法看起来像这样：
+
+```javascript
+class MyClass {
+  prop = value; // 属性
+
+  constructor(...) { // 构造器
+    // ...
+  }
+
+  method(...) {} // method
+
+  get something(...) {} // getter 方法
+  set something(...) {} // setter 方法
+
+  [Symbol.iterator]() {} // 有计算名称（computed name）的方法（此处为 symbol）
+  // ...
+
+  // =定义的函数和属性都在对象实例上
+  sayHi = function() {
+    alert('Hi')
+  }
+}
+```
+
+技术上来说，MyClass 是一个函数（我们提供作为 constructor 的那个），而 methods、getters 和 settors 都被写入了 MyClass.prototype。
+
 ## 13 模块
 
 ### 13.1 简介
