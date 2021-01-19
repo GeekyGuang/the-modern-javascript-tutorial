@@ -557,6 +557,29 @@ let rabbit2 = new rabbit.constructor("Black Rabbit");
 
 注意，当 prototype 被修改，constructor 可能就不存在了
 
+### 8.4 现代原型方法
+
+设置和直接访问原型的现代方法有：
+
+Object.create(proto, [descriptors]) —— 利用给定的 proto 作为 [[Prototype]]（可以是 null）和可选的属性描述来创建一个空对象。
+Object.getPrototypeOf(obj) —— 返回对象 obj 的 [[Prototype]]（与 **proto** 的 getter 相同）。
+Object.setPrototypeOf(obj, proto) —— 将对象 obj 的 [[Prototype]] 设置为 proto（与 **proto** 的 setter 相同）。
+
+```javascript
+let animal = {
+  eats: true,
+};
+
+// 创建一个以 animal 为原型的新对象
+let rabbit = Object.create(animal);
+
+alert(rabbit.eats); // true
+
+alert(Object.getPrototypeOf(rabbit) === animal); // true
+
+Object.setPrototypeOf(rabbit, {}); // 将 rabbit 的原型修改为 {}
+```
+
 ## 13 模块
 
 ### 13.1 简介

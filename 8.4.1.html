@@ -1,0 +1,29 @@
+<script>
+    // let dictionary = Object.create(null, {
+    //     toString: { // 定义 toString 属性
+    //         value() { // value 是一个 function
+    //         return Object.keys(this).join();
+    //         }
+    //     }
+    // });
+    // 当我们使用描述器创建一个属性，它的标识默认是 false
+    
+    let dictionary = Object.create(null)
+
+    dictionary.toString = function(){
+        return Object.keys(this).join(',')
+    }
+
+    dictionary.apple = "Apple"
+    dictionary.__proto__ = "test"
+
+    Object.defineProperty(dictionary, 'toString', {
+        enumerable: false
+    })
+
+    for(let key in dictionary) {
+        alert(key)
+    }
+
+    alert(dictionary)
+</script>
