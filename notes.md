@@ -609,6 +609,74 @@ class MyClass {
 
 技术上来说，MyClass 是一个函数（我们提供作为 constructor 的那个），而 methods、getters 和 settors 都被写入了 MyClass.prototype。
 
+### 9.2 类继承
+
+使用 extends 继承
+
+```javascript
+class Animal {
+  constructor(name) {
+    this.speed = 0;
+    this.name = name;
+  }
+
+  run(speed) {
+    this.speed = speed;
+    alert(`${this.name} runs with speed ${this.speed}`);
+  }
+
+  stop() {
+    this.speed = 0;
+    alert(`${this.name} stands still`);
+  }
+}
+
+class Rabbit extends Animal {
+  hide() {
+    alert(`${this.name} hides`);
+  }
+}
+
+let rabbit = new Rabbit("White Rabbit");
+rabbit.run(5);
+rabbit.hide();
+
+rabbit.__proto__ === Rabbit.prototype;
+Rabbit.prototype.__proto__ === Animal.prototype;
+Animal.prototype.__proto__ === Object.prototype;
+```
+
+重写方法，使用 super 调用父类的方法
+
+```javascript
+class Rabbit extends Animal {
+  hide() {
+    alert(`${this.name} hides!`);
+  }
+
+  stop() {
+    super.stop(); // 调用父类的 stop
+    this.hide(); // 然后 hide
+  }
+}
+```
+
+重写 constructor
+继承类的 constructor 必须调用 super(...)，并且 (!) 一定要在使用 this 之前调用。
+
+```javascript
+class Rabbit extends Animal {
+  constructor(name, earLength) {
+    super(name);
+    this.earLength = earLength;
+  }
+
+  // ...
+}
+```
+
+箭头函数没有自己的 super
+
 ## 13 模块
 
 ### 13.1 简介
