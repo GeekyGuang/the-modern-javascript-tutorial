@@ -709,6 +709,26 @@ B.prototype.__proto__ === A.prototype;
 
 因此，如果一个字段在 B 中没有找到，会继续在 A 中查找。
 
+继承 Object 的问题
+
+```javascript
+class Rabbit extends Object {
+  constructor(name) {
+    super(); // 需要在继承时调用父类的 constructor
+    this.name = name;
+  }
+}
+
+let rabbit = new Rabbit("Rab");
+
+alert(rabbit.hasOwnProperty("name")); // true
+```
+
+“extends” 语法会设置两个原型：
+
+1. 在构造函数的 "prototype" 之间设置原型（为了获取实例方法）。
+2. 在构造函数之间会设置原型（为了获取静态方法）。
+
 ## 13 模块
 
 ### 13.1 简介
