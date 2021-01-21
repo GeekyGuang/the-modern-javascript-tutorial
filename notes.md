@@ -677,6 +677,38 @@ class Rabbit extends Animal {
 
 箭头函数没有自己的 super
 
+### 9.3 静态属性和静态方法
+
+静态方法被用于实现属于整个类的功能。它与具体的类实例无关。
+语法如下所示：
+
+```javascript
+class MyClass {
+  static property = ...;
+
+  static method() {
+    ...
+  }
+}
+```
+
+从技术上讲，静态声明与直接给类本身赋值相同：
+
+```javascript
+MyClass.property = ...
+MyClass.method = ...
+```
+
+静态属性和方法是可被继承的。
+对于 class B extends A，
+
+```javascript
+B.__proto__ === A;
+B.prototype.__proto__ === A.prototype;
+```
+
+因此，如果一个字段在 B 中没有找到，会继续在 A 中查找。
+
 ## 13 模块
 
 ### 13.1 简介
