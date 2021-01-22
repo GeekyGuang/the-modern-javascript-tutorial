@@ -737,6 +737,78 @@ alert(rabbit.hasOwnProperty("name")); // true
 - 内部接口 —— 可以通过该类的其他方法访问，但不能从外部访问的方法和属性。
 - 外部接口 —— 也可以从类的外部访问的方法和属性。
 
+#### 受保护的 waterAmount
+
+```javascript
+class CoffeeMachine {
+  // 受保护的属性通常以下划线 _ 作为前缀
+  _waterAmount = 0;
+
+  set waterAmount(value) {
+    if (value < 0) throw new Error("Negative water");
+    this._waterAmount = value;
+  }
+
+  get waterAmount() {
+    return this._waterAmount;
+  }
+
+  constructor(power) {
+    this.power = power;
+  }
+}
+
+let coffeeMachine = new CoffeeMachine(100);
+
+coffeeMachine.waterAmount = -10;
+```
+
+#### 只读的 power
+
+要让一个属性变得只读，只设置 getter，不设置 setter
+
+```javascript
+class CoffeeMachine {
+  // ...
+
+  constructor(power) {
+    this._power = power;
+  }
+
+  get power() {
+    return this._power;
+  }
+}
+
+let coffeeMachine = new CoffeeMachine(100);
+
+coffeeMachine.power = 200; // Error
+```
+
+#### 私有字段
+
+私有字段用#开头,是语言级别的实现
+
+```javascript
+class CoffeeMachine {
+  #waterLimit = 200;
+
+  #checkWater(value) {
+    if (value < 0) throw new Error("Negative water");
+    if (value > this.#waterLimit) throw new Error("Too much water");
+  }
+}
+
+let coffeeMachine = new CoffeeMachine();
+
+// 不能从类的外部访问类的私有属性和方法
+coffeeMachine.#checkWater(); // Error
+coffeeMachine.#waterLimit = 1000; // Error
+```
+
+私有属性限制太严重，更多还是用受保护的字段
+就面向对象编程（OOP）而言，内部接口与外部接口的划分被称为 封装
+
 ## 13 模块
 
 ### 13.1 简介
