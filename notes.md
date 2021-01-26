@@ -809,6 +809,19 @@ coffeeMachine.#waterLimit = 1000; // Error
 私有属性限制太严重，更多还是用受保护的字段
 就面向对象编程（OOP）而言，内部接口与外部接口的划分被称为 封装
 
+### instanceof 操作符
+
+```javascript
+obj instanceof Class;
+```
+
+如果 obj 隶属于 Class 类（或 Class 类的衍生类）或者 构造函数，则返回 true。
+instanceof 考虑原型链，如果 Class 在 obj 的原型链中，则返回 true
+
+这里还要提到一个方法 objA.isPrototypeOf(objB)，如果 objA 处在 objB 的原型链中，则返回 true。所以，可以将 obj instanceof Class 检查改为 Class.prototype.isPrototypeOf(obj)。
+
+instanceof 只关心 prototype，不关心 constructor
+
 ## 13 模块
 
 ### 13.1 简介
