@@ -844,6 +844,7 @@ Error 对象包含下列属性：
 - message — 人类可读的 error 信息。
 - name — 具有 error 名称的字符串（Error 构造器的名称）。
 - stack（没有标准，但得到了很好的支持）— Error 发生时的调用栈。
+
 如果我们不需要 error 对象，我们可以通过使用 catch { 而不是 catch(err) { 来省略它。
 
 我们也可以使用 throw 操作符来生成自定义的 error。从技术上讲，throw 的参数可以是任何东西，但通常是继承自内建的 Error 类的 error 对象。
