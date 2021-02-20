@@ -860,6 +860,73 @@ Error 对象包含下列属性：
 
 “基于回调”的异步编程风格: 异步执行某项功能的函数应该提供一个 callback 参数用于在相应事件完成时调用
 
+```javascript
+function loadScript(src, callback) {
+  let script = document.createElement("script");
+  script.src = src;
+  script.onload = () => callback(script);
+
+  document.head.append(script);
+}
+
+loadScript(
+  "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js",
+  (script) => {
+    alert(`the script ${script.src} is loaded`);
+  }
+);
+```
+
+如果要依次加载多个脚本，就在回调中回调
+
+“Error 优先回调（error-first callback）”风格
+
+```javascript
+function loadScript(src, callback) {
+  let script = document.createElement("script");
+  script.src = src;
+
+  script.onload = callback(null, script);
+  script.onerror = callback(new Error(`Script load error for ${script.src}`));
+
+  document.head.append(script);
+}
+
+loadScript("/my/script.js", function (error, script) {
+  if (error) {
+    // 处理error
+  } else {
+    // 脚本加载成功
+  }
+});
+```
+
+回调地狱
+
+```javascript
+loadScript("1.js", function (error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript("2.js", function (error, script) {
+      if (error) {
+        handleError(error);
+      } else {
+        // ...
+        loadScript("3.js", function (error, script) {
+          if (error) {
+            handleError(error);
+          } else {
+            // ...加载完所有脚本后继续 (*)
+          }
+        });
+      }
+    });
+  }
+});
+```
+
 ## 13 模块
 
 ### 13.1 简介
