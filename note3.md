@@ -23,3 +23,33 @@
 工具：https://cubic-bezier.com/
 
 ### 5.2 CSS 动画
+
+#### transition
+
+css 动画结束之后，会触发 transitionend 事件
+
+```javascript
+boat.onclick = function () {
+  //...
+  let times = 1;
+
+  function go() {
+    if (times % 2) {
+      // 向右移动
+      boat.classList.remove("back");
+      boat.style.marginLeft = 100 * times + 200 + "px";
+    } else {
+      // 向左移动
+      boat.classList.add("back");
+      boat.style.marginLeft = 100 * times - 200 + "px";
+    }
+  }
+
+  go();
+
+  boat.addEventListener("transitionend", function () {
+    times++;
+    go();
+  });
+};
+```
