@@ -822,6 +822,38 @@ instanceof 考虑原型链，如果 Class 在 obj 的原型链中，则返回 tr
 
 instanceof 只关心 prototype，不关心 constructor
 
+## 10.1 try...catch...finally
+
+try..catch 结构允许我们处理执行过程中出现的 error。从字面上看，它允许“尝试”运行代码并“捕获”其中可能发生的错误。
+
+语法如下：
+
+```javascript
+try {
+  // 执行此处代码
+} catch (err) {
+  // 如果发生错误，跳转至此处
+  // err 是一个 error 对象
+} finally {
+  // 无论怎样都会在 try/catch 之后执行
+}
+```
+
+这儿可能会没有 catch 部分或者没有 finally，所以 try..catch 或 try..finally 都是可用的。
+
+Error 对象包含下列属性：
+
+- message — 人类可读的 error 信息。
+- name — 具有 error 名称的字符串（Error 构造器的名称）。
+- stack（没有标准，但得到了很好的支持）— Error 发生时的调用栈。
+
+如果我们不需要 error 对象，我们可以通过使用 catch { 而不是 catch(err) { 来省略它。
+
+我们也可以使用 throw 操作符来生成自定义的 error。从技术上讲，throw 的参数可以是任何东西，但通常是继承自内建的 Error 类的 error 对象。
+再次抛出（rethrowing）是一种错误处理的重要模式：catch 块通常期望并知道如何处理特定的 error 类型，因此它应该再次抛出它不知道的 error。
+
+即使我们没有 try..catch，大多数执行环境也允许我们设置“全局”错误处理程序来捕获“掉出（fall out）”的 error。在浏览器中，就是 window.onerror。
+
 ## 11 Promise, async/await
 
 ### 11.1 回调
