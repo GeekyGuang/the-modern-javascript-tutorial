@@ -822,6 +822,12 @@ instanceof 考虑原型链，如果 Class 在 obj 的原型链中，则返回 tr
 
 instanceof 只关心 prototype，不关心 constructor
 
+## 11 Promise, async/await
+
+### 11.1 回调
+
+“基于回调”的异步编程风格: 异步执行某项功能的函数应该提供一个 callback 参数用于在相应事件完成时调用
+
 ## 13 模块
 
 ### 13.1 简介
