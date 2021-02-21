@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    .circle {
+      transition-property: width, height, margin-left, margin-top;
+      transition-duration: 2s;
+      position: fixed;
+      transform: translateX(-50%) translateY(-50%);
+      background-color: red;
+      border-radius: 50%;
+
+      /* transition必须有初始值，否则看不到变化 */
+      width: 0;
+      height: 0;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  
+  <div class='circle'></div>
+  <script>
+    function showCircle(cx,cy,radius){
+      let circle = document.getElementsByClassName('circle')[0]
+      circle.style.width = 2*radius + 'px'
+      circle.style.height = 2*radius + 'px'
+      circle.style.top = cy + 'px'
+      circle.style.left = cx + 'px'
+    }
+
+    let button = document.createElement('button')
+    button.innerText = 'showCircle(150,150,100)'
+    button.onclick = function(){
+        showCircle(150,150,100)
+    }
+
+    document.body.append(button)
+  </script>
+</body>
+</html>
