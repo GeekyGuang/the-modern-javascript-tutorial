@@ -27,6 +27,7 @@
 #### transition
 
 css 动画结束之后，会触发 transitionend 事件
+**有多少个 transition-property,就会触发多少次 transitionend 事件**
 
 ```javascript
 boat.onclick = function () {
@@ -52,4 +53,53 @@ boat.onclick = function () {
     go();
   });
 };
+```
+
+练习题，放大图片动画
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      img {
+        cursor: pointer;
+      }
+    </style>
+    <style>
+      #flyjet {
+        width: 40px;
+        /* -> 400px */
+
+        height: 24px;
+        /* -> 240px */
+      }
+      /* ID选择器优先级大于类选择器 */
+      #flyjet.enlarge {
+        width: 400px;
+        height: 240px;
+        transition: all 3s cubic-bezier(0.1, 0.65, 0.72, 1.49);
+      }
+    </style>
+  </head>
+
+  <body>
+    <img id="flyjet" src="https://en.js.cx/clipart/flyjet.jpg" />
+    <script>
+      flyjet.onclick = function () {
+        this.classList.add("enlarge");
+
+        // 有多少个transition-property就触发多少次
+        let transFlag = false;
+        flyjet.addEventListener("transitionend", function () {
+          if (!transFlag) {
+            alert("done!");
+          }
+          transFlag = true;
+        });
+      };
+    </script>
+  </body>
+</html>
 ```
