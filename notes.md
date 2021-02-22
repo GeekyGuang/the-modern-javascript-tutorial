@@ -1024,6 +1024,68 @@ finally 处理程序将结果和 error 传递给下一个处理程序。
 
 我们可以根据需要，在 promise 上多次调用 .then
 
+### 11.3 promise 链
+
+我们有一系列的异步任务要一个接一个地执行，我们可以将 result 通过 .then 处理程序（handler）链进行传递。
+
+```javascript
+new Promise(function (resolve, reject) {
+  setTimeout(() => resolve(1), 1000); // (*)
+})
+  .then(function (result) {
+    // (**)
+
+    alert(result); // 1
+    return result * 2;
+  })
+  .then(function (result) {
+    // (***)
+
+    alert(result); // 2
+    return result * 2;
+  })
+  .then(function (result) {
+    alert(result); // 4
+    return result * 2;
+  });
+```
+
+对 promise.then 的调用会返回了一个 promise，当处理程序（handler）返回一个值时，它将成为该 promise 的 result，所以将使用它调用下一个 .then。
+
+#### 返回 promise
+
+.then(handler) 中所使用的处理程序（handler）可以创建并返回一个 promise。
+在这种情况下，其他的处理程序（handler）将等待它 settled 后再获得其结果（result）。
+
+```javascript
+new Promise(function (resolve, reject) {
+  setTimeout(() => resolve(1), 1000);
+})
+  .then(function (result) {
+    alert(result); // 1
+
+    return new Promise((resolve, reject) => {
+      // (*)
+      setTimeout(() => resolve(result * 2), 1000);
+    });
+  })
+  .then(function (result) {
+    // (**)
+
+    alert(result); // 2
+
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve(result * 2), 1000);
+    });
+  })
+  .then(function (result) {
+    alert(result); // 4
+  });
+```
+
+返回 promise 使我们能够构建异步行为链。
+作为一个好的做法，异步行为应该始终返回一个 promise。这样就可以使得之后我们计划后续的行为成为可能。即使我们现在不打算对链进行扩展，但我们之后可能会需要。
+
 ## 13 模块
 
 ### 13.1 简介
