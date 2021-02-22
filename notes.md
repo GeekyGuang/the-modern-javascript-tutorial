@@ -948,6 +948,19 @@ executor 会自动运行并尝试执行一项工作。尝试结束后，如果�
 - state — 最初是 "pending"，然后在 resolve 被调用时变为 "fulfilled"，或者在 reject 被调用时变为 "rejected"。
 - result — 最初是 undefined，然后在 resolve(value) 被调用时变为 value，或者在 reject(error) 被调用时变为 error。
 
+与最初的 “pending” promise 相反，一个 resolved 或 rejected 的 promise 都会被称为 “settled”。
+executor 只能调用一个 resolve 或一个 reject。任何状态的更改都是最终的。
+所有其他的再对 resolve 和 reject 的调用都会被忽略：
+
+```javascript
+let promise = new Promise(function (resolve, reject) {
+  resolve("done");
+
+  reject(new Error("…")); // 被忽略
+  setTimeout(() => resolve("…")); // 被忽略
+});
+```
+
 Promise 对象的 state 和 result 属性都是内部的。我们无法直接访问它们。但我们可以对它们使用 .then/.catch/.finally 方法。
 
 #### then
