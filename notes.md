@@ -927,6 +927,90 @@ loadScript("1.js", function (error, script) {
 });
 ```
 
+### 11.2 promise
+
+Promise 对象构造器语法
+
+```javascript
+let promise = new Promise(function (resolve, reject) {
+  // executor
+});
+```
+
+传递给 new Promise 的函数被称为 executor。当 new Promise 被创建，executor 会自动运行。它包含最终应产出结果的生产者代码。
+
+它的参数 resolve 和 reject 是由 JavaScript 自身提供的回调。我们的代码仅在 executor 的内部。
+
+executor 会自动运行并尝试执行一项工作。尝试结束后，如果成功则调用 resolve，如果出现 error 则调用 reject。
+
+由 new Promise 构造器返回的 promise 对象具有以下内部属性：
+
+- state — 最初是 "pending"，然后在 resolve 被调用时变为 "fulfilled"，或者在 reject 被调用时变为 "rejected"。
+- result — 最初是 undefined，然后在 resolve(value) 被调用时变为 value，或者在 reject(error) 被调用时变为 error。
+
+Promise 对象的 state 和 result 属性都是内部的。我们无法直接访问它们。但我们可以对它们使用 .then/.catch/.finally 方法。
+
+#### then
+
+最重要最基础的一个就是 .then
+语法如下：
+
+```javascript
+promise.then(
+  function (result) {
+    /* handle a successful result */
+  },
+  function (error) {
+    /* handle an error */
+  }
+);
+```
+
+.then 的第一个参数是一个函数，该函数将在 promise resolved 后运行并接收结果。
+
+.then 的第二个参数也是一个函数，该函数将在 promise rejected 后运行并接收 error。
+
+如果我们只对成功完成的情况感兴趣，那么我们可以只为 .then 提供一个函数参数
+
+#### catch
+
+如果我们只对 error 感兴趣，那么我们可以使用 null 作为第一个参数：.then(null, errorHandlingFunction)。或者我们也可以使用 .catch(errorHandlingFunction)，其实是一样的：
+
+```javascript
+let promise = new Promise((resolve, reject) => {
+  setTimeout(() => reject(new Error("Whoops!")), 1000);
+});
+
+// .catch(f) 与 promise.then(null, f) 一样
+promise.catch(alert); // 1 秒后显示 "Error: Whoops!"
+```
+
+#### finally
+
+就像常规 try {...} catch {...} 中的 finally 子句一样，promise 中也有 finally。
+
+.finally(f) 调用与 .then(f, f) 类似，在某种意义上，f 总是在 promise 被 settled 时运行：即 promise 被 resolve 或 reject。
+
+finally 是执行清理（cleanup）的很好的处理程序（handler），例如无论结果如何，都停止使用不再需要的加载指示符（indicator）。
+
+```javascript
+new Promise((resolve, reject) => {
+  /* 做一些需要时间的事儿，然后调用 resolve/reject */
+})
+  // 在 promise 为 settled 时运行，无论成功与否
+  .finally(() => stop loading indicator)
+  // 所以，加载指示器（loading indicator）始终会在我们处理结果/错误之前停止
+  .then(result => show result, err => show error)
+```
+
+也就是说，finally(f) 其实并不是 then(f,f) 的别名。它们之间有一些细微的区别：
+
+finally 处理程序（handler）没有参数。在 finally 中，我们不知道 promise 是否成功。没关系，因为我们的任务通常是执行“常规”的定稿程序（finalizing procedures）。
+
+finally 处理程序将结果和 error 传递给下一个处理程序。
+
+我们可以根据需要，在 promise 上多次调用 .then
+
 ## 13 模块
 
 ### 13.1 简介
