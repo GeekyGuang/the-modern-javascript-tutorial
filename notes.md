@@ -1086,6 +1086,17 @@ new Promise(function (resolve, reject) {
 返回 promise 使我们能够构建异步行为链。
 作为一个好的做法，异步行为应该始终返回一个 promise。这样就可以使得之后我们计划后续的行为成为可能。即使我们现在不打算对链进行扩展，但我们之后可能会需要。
 
+setTimeout 中的错误不会被处理
+这里的错误并不是在 executor 运行时生成的，而是在稍后生成的。因此，promise 无法处理它。
+
+```javascript
+new Promise(function (resolve, reject) {
+  setTimeout(() => {
+    throw new Error("Whoops!");
+  }, 1000);
+}).catch(alert);
+```
+
 ## 13 模块
 
 ### 13.1 简介
