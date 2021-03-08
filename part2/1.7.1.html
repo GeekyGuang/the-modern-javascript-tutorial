@@ -1,0 +1,14 @@
+<ol id="elem">
+    <li>Hello</li>
+    <li>World</li>
+  </ol>
+  
+  <script>
+    function clear(elem) { 
+        while(elem.firstChild){
+            elem.firstChild.remove()
+        }
+    }
+  
+    clear(elem); // 清除列表
+  </script>
