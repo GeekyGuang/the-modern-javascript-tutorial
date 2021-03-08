@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hour {
+            color: red;
+        }
+        .minute {
+            color: green;
+        }
+        .seconds {
+            color: blue;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div>
+        <div id='clock'>
+            <span class='hour'></span>:<span class='minute'></span>:<span class='seconds'></span>
+        </div>
+
+        <button id='start'>start</button><button id='stop'>stop</button>
+    </div>
+    <script>
+        function timer(){
+            let clock = document.getElementById('clock')
+            let time = new Date()
+            let hour = time.getHours()
+            if(hour < 10) hour += '0' + hour
+            let minute = time.getMinutes()
+            if(minute < 10) minute += '0' + minute
+            let seconds = time.getSeconds()
+            if(seconds < 10) seconds += '0' + seconds
+
+            clock.children[0].innerText = hour
+            clock.children[1].innerText = minute
+            clock.children[2].innerText = seconds
+        }
+
+
+        let intervalId 
+        function start(){
+          intervalId = setInterval(timer,1000)
+          timer()
+        }
+
+        start()
+
+        document.querySelector('#start').onclick = start
+        document.querySelector('#stop').onclick = ()=>{
+            clearInterval(intervalId)
+            intervalId = null
+        }
+
+
+
+
+
+
+    </script>
+</body>
+</html>
