@@ -1,3 +1,52 @@
-<script>
-
-</script>
+<style>
+* {
+  box-sizing: border-box;
+}
+  
+body,
+html {
+  background: #e2ebe7;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  min-height: 95vh;
+}
+  
+.my-card {
+  position: absolute;
+  top: 4rem;
+  left: 10%;
+  width: 80%;
+  background: #000;
+  border-radius: 0.75rem;
+  color: #fff;
+  -webkit-filter: drop-shadow(5px 5px 5px #000);
+          filter: drop-shadow(5px 5px 5px #000);
+  font-family: 'Avenir', sans-serif;
+  font-weight: bolder;
+  padding: 1.25rem;
+  min-height: 14rem;
+  transition: -webkit-transform 0.25s ease-out;
+  transition: transform 0.25s ease-out;
+  transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
+ 
+}
+  
+.left-tilted {
+  top: 2rem;
+  left: 25%;
+  width: 80%;
+  height: 14rem;
+  -webkit-transform: translate(-20%, 0) rotate(-15deg);
+          transform: translate(-20%, 0) rotate(-15deg);
+}
+  
+.my-card--answer {
+  color: #000;
+  background: #f5f3e7;
+  left: 3rem;
+  top: 9rem;
+  width: 80%;
+}
+</style>
