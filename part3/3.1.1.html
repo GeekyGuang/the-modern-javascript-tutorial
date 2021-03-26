@@ -1,0 +1,18 @@
+<script>
+    let users = ['jack', 'lucas', 'rose']
+
+    function getUsers(names) {
+        let name_response = names.map(async function(item){
+            let response = await fetch(`https://api.github.com/users/${item}`)
+            if(response.ok){
+            return response.text()
+            }else{
+            return null
+            }
+        })
+
+        console.log(name_response) 
+    }
+
+    getUsers(users)
+</script>
