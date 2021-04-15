@@ -1,0 +1,19 @@
+<script>
+    function debounce(fn, delay){
+        timerId = null
+        return function(){
+            const context = this
+            if(timerId){
+                window.clearTimeout(timerId)
+            }
+            timerId = setTimeout(()=>{
+                    fn.apply(this, arguments)
+                    timerId = null
+                }, delay)
+            }
+        }
+
+    const debounced = debounce(()=>console.log('hi'))
+    debounced()
+    debounced()
+</script>
