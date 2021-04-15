@@ -1,0 +1,11 @@
+<script>
+    let request = new XMLHttpRequest()
+    request.open('GET', '/a/b/c?name=ff', true)  // true代表异步，是默认的，可不写
+    request.onreadystatechange = function(){
+        if(request.readyState === 4 && request.status === 200){ // 代表请求成功
+           console.log(request.responseText)
+        }  
+    }
+    // request.onload = ()=>{console.log(request.responseText)}
+    request.send()
+</script>
